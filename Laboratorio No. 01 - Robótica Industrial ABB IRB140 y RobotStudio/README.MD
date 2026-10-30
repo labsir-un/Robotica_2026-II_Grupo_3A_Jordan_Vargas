@@ -114,62 +114,43 @@ Lógica de la banda:
 ---
 
 ## 2. Diagrama de flujo
-**Responsable: B**
-
-### 2.1 Lógica principal
-
 ```mermaid
 flowchart TD
-    S([Inicio]) --> W{Leer entradas}
-    W -- "DI_01" --> C1[Pose de mantenimiento]
-    W -- "DI_02" --> C2[Rutina de decoración]
-    W -- "DI_03" --> C3[Farmear Aura]
-    W -- "Ninguna" --> W
-    C1 --> W
-    C2 --> W
-    C3 --> W
+    A([Inicio]) --> B[Posición Home]
+    B --> C[Reset salidas digitales]
+    C --> D{{Bucle While True}}
+
+    D --> E{DI_01 == 1?}
+
+    E -- Sí --> F[Set DO_01]
+    F --> G[Se mueve a posición de Mantenimiento]
+    G --> H[Espera 10 s]
+    H --> I[Regresa a Home]
+    I --> J[Reset DO_01]
+    J --> D
+
+    E -- No --> K{DI_02 == 1?}
+
+    K -- Sí --> L[Set DO_02]
+    L --> M[Movimiento FWD_Conveyor durante 3 s]
+    M --> N[Comienza la rutina de decoración - Movimiento FWD_Conveyor durante 4 s]
+    N --> O[Regresa a Home]
+    O --> P[Reset DO_02]
+    P --> D
+
+    K -- No --> Q{DI_03 == 1?}
+
+    Q -- Sí --> S[Set DO_03]
+    S --> T[Comienza el movimiento en el aire - Farmeo de Aura]
+    T --> U[Regresa a Home]
+    U --> V[Reset DO_03]
+    V --> D
+
+    Q -- No --> W[Espera la activación de una entrada digital]
+    W --> D
+
+    D -. Fin del programa .-> Z([FIN])
 ```
-
-### 2.2 Ciclo de decoración (`DI_02`)
-
-```mermaid
-flowchart TD
-    A([DI_02 = 1]) --> B{Robot en HOME?}
-    B -- No --> B1[Ir a HOME] --> C
-    B -- Si --> C[Banda FWD / BWD]
-    C --> D[Transporte del pastel hacia el robot]
-    D --> E[Pastel en la estación]
-    E --> F[Banda detenida]
-    F --> G["DO_01 = 1"]
-    G --> H[Rutina de decoración]
-    H --> I["DO_01 = 0"]
-    I --> J[Robot retorna a HOME]
-    J --> K{Robot en posición segura?}
-    K -- Si --> L[Banda FWD / BWD]
-    L --> M[Transporte del pastel decorado]
-    M --> N[Pastel al final de la banda]
-    N --> O[Banda detenida]
-    O --> P([Fin del ciclo])
-```
-
-### 2.3 Enclavamiento de la banda
-
-```mermaid
-flowchart TD
-    A([Solicitud de movimiento]) --> B{Sentido solicitado}
-    B -- Adelante --> C["Reset BWD_Conveyor"]
-    C --> D["WaitTime 0.2"]
-    D --> E["Set FWD_Conveyor"]
-    B -- Atras --> F["Reset FWD_Conveyor"]
-    F --> G["WaitTime 0.2"]
-    G --> H["Set BWD_Conveyor"]
-    B -- Detener --> I["Reset FWD y BWD"]
-```
-
-### 2.4 Pose de mantenimiento (`DI_01`) y *Farmear Aura* (`DI_03`)
-[Agregar un diagrama Mermaid para cada rutina: ir a la pose / activar `DO_02` / esperar a que `DI_02` se desactive / `Reset DO_02`; y activar `DO_03` / secuencia / `Reset DO_03` / HOME.]
-
----
 
 ## 3. Plano de planta
 **Responsable: B**
