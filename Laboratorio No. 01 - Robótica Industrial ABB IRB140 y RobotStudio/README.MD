@@ -8,7 +8,7 @@
 | **Integrante B** | Isaac Jordán Oviedo - ijordan@unal.edu.co |
 | **Robot** | ABB IRB 140 (controlador IRC5) |
 | **Software** | RobotStudio, RAPID |
-| **Fecha** | [30/10/2026] |
+| **Fecha** | 30/10/2026 |
 | **Video de la práctica** | [Enlace al video en el canal oficial de YouTube de LabSIR](https://youtu.be/JVfY9IiOYn8) |
 
 
@@ -265,28 +265,58 @@ Posibles causas identificadas:
 
 ## 6. WorkObjects
 
- 
-La misma rutina de decoración se programa respecto a un `wobjdata` y se reutiliza cambiando únicamente el sistema de coordenadas de referencia. Todos los targets del programa están definidos respecto a `Workobject_1`; para correr en el robot real hay que referenciarlos al WorkObject calibrado físicamente (`Wfeli`).
- 
-| WorkObject | Entorno | Origen efectivo `[x, y, z]` (mm) | Orientación | Uso |
-|---|---|---|---|---|
-| `Workobject_1` | RobotStudio | `[649.295, −460.000, 156.188]` | giro de 178° sobre Y (Z hacia abajo, inclinado 2°) | [superficie de decoración en la celda virtual] |
-| `Wfeli` | Robot real | `[592.850, −241.657, 124.334]` | giro de 180° sobre Y (Z hacia abajo) | [superficie de decoración en la celda real] |
- 
-Los dos orígenes caen en el cuadrante `x(+), y(−)`. Entre ambos hay 227.8 mm de distancia (Δx = −56.4, Δy = +218.3, Δz = −31.9, de RobotStudio al real) y los marcos están girados 2.5° entre sí.
- 
-<!-- EDITAR: columna "Uso". Si la guía pedía un segundo WorkObject (el de la tabla original estaba en x(+), y(+)), falta definirlo; si no, esta tabla ya cumple. -->
- 
-- **`Workobject_1` (RobotStudio):** `uframe` en `[649.930, −460, 137.999]` con cuaternión `[0.017452, 0, 0.999848, 0]` y `oframe` desplazado `[0, 0, −18.2]` mm. Método de definición: [cómo lo definiste en RobotStudio].
-- **`Wfeli` (físico):** método de 3 puntos (`X1`, `X2`, `Y1`): `X1 = [584.345, −241.788, 124.362] mm`, `X2 = [410.747, −244.455, 124.953] mm` y `Y1 = [588.688, 29.837, 127.407] mm`. El origen queda en la proyección de `Y1` sobre la recta `X1–X2`; el eje X va hacia `X2` (sentido −x de la base) y el eje Y hacia `Y1`, así que el eje Z apunta hacia abajo, hacia la superficie. Los puntos cubren 173.6 mm en X y 271.5 mm en Y, con alturas entre 124.4 y 127.4 mm.
+
+Todos los puntos de las trayectorias del programa están definidos respecto a un `wobjdata`, de modo que la misma rutina se reutiliza cambiando únicamente el sistema de coordenadas de referencia. En este laboratorio el WorkObject se definió de dos formas: en RobotStudio (`Workobject_1`) y con el robot real mediante el método de 3 puntos (`Wfeli`).
+
+### 6.1 WorkObject utilizado en la práctica
+Tanto la simulación como la ejecución en el robot real usan `Workobject_1`, es decir, la definición hecha en RobotStudio. La calibración física (`Wfeli`) se realizó para documentar el procedimiento y obtener los datos que pedía la práctica; se compara más abajo, pero el programa no la utiliza.
+
+En el código, los trazos de la decoración y la rutina *Farmear Aura* se mueven con `\WObj:=Workobject_1`; el HOME y la pose de mantenimiento se definen respecto a `wobj0`.
+
+### 6.2 Definición en RobotStudio: `Workobject_1`
+- Método de definición: [cómo lo definiste en RobotStudio].
+- `uframe`: origen en `[649.930, −460.000, 137.999]` mm y cuaternión `[0.017452, 0, 0.999848, 0]` (giro de 178° sobre Y, con el eje Z apuntando hacia abajo, hacia la superficie).
+- `oframe`: desplazamiento de `[0, 0, −18.2]` mm.
+- Origen efectivo del marco: `[649.295, −460.000, 156.188]` mm, en el cuadrante `x(+), y(−)`.
+
 ```rapid
 TASK PERS wobjdata Workobject_1 := [FALSE,TRUE,"",[[649.930201004,-460,137.998781654],[0.017452407,0,0.999847695,0]],[[0,0,-18.2],[1,0,0,0]]];
+```
+
+![Workobject_1 en RobotStudio](imagenes/evidencias/workobject_robotstudio.png)
+
+### 6.3 Calibración con el robot real: `Wfeli`
+Se definió con el método de 3 puntos (`X1`, `X2`, `Y1`):
+
+| Punto | Posición `[x, y, z]` (mm) |
+|---|---|
+| `X1` | `[584.345, −241.788, 124.362]` |
+| `X2` | `[410.747, −244.455, 124.953]` |
+| `Y1` | `[588.688, 29.837, 127.407]` |
+
+El origen queda en la proyección de `Y1` sobre la recta `X1–X2`: `[592.850, −241.657, 124.334]` mm, también en el cuadrante `x(+), y(−)`. El eje X va de `X1` hacia `X2` (sentido −x de la base) y el eje Y hacia `Y1`, por lo que el eje Z apunta hacia abajo, hacia la superficie. Los puntos cubren 173.6 mm en X y 271.5 mm en Y, con alturas entre 124.4 y 127.4 mm.
+
+```rapid
 TASK PERS wobjdata Wfeli := [FALSE,TRUE,"",[[0,0,0],[1,0,0,0]],[[592.85,-241.657,124.334],[0.00174513,0.00767284,-0.999953,-0.00564666]]];
 ```
- 
-![Decoración con cada WorkObject](imagenes/evidencias/workobjects.png)
- 
----
+
+![Calibración de Wfeli con el robot real](imagenes/evidencias/workobject_real.jpg)
+
+### 6.4 Comparación
+
+| Parámetro | `Workobject_1` (RobotStudio) | `Wfeli` (robot real) | Diferencia (real − RobotStudio) |
+|---|---:|---:|---:|
+| Origen X (mm) | 649.295 | 592.850 | −56.445 |
+| Origen Y (mm) | −460.000 | −241.657 | +218.343 |
+| Origen Z (mm) | 156.188 | 124.334 | −31.854 |
+| Distancia entre orígenes (mm) | — | — | **227.8** |
+| Giro del cuaternión sobre Y | 178.0° | 179.8° | — |
+| Inclinación del eje Z respecto a la vertical | 2.0° | 0.7° | — |
+| Giro relativo entre los dos marcos | — | — | 2.5° |
+
+Los dos marcos tienen el eje Z hacia abajo y casi la misma orientación, pero sus orígenes están separados 227.8 mm en el plano y 31.9 mm en altura. 
+
+
 
 ## 7. Instrucciones y funciones RAPID utilizadas
 **Responsable: A**
