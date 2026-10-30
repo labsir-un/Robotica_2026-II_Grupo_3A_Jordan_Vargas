@@ -322,100 +322,65 @@ PERS wobjdata WorkObject_2 := [FALSE,TRUE,"",[[x,y,z],[q1,q2,q3,q4]],[[0,0,0],[1
 ---
 
 ## 8. Código RAPID
-**Responsable: A**
+
 
 El código completo se encuentra en [`codigo/`](codigo/):
 
 - [`codigo/Module1.mod`](codigo/Module1.mod)
 - Respaldo completo de la estación: [`robotstudio/`](robotstudio/)
 
-Fragmento representativo (enclavamiento de la banda):
-
+Fragmento representativo (movimiento de la banda en el ciclo de decoración):
+ 
 ```rapid
-PROC ConveyorForward()
-    Reset BWD_Conveyor;
-    WaitTime 0.2;
-    Set FWD_Conveyor;
-ENDPROC
+IF DI_02=1 THEN
+    SET DO_02;
+    SET BWD_Conveyor;
+    WaitTime 3;
+    RESET BWD_Conveyor;
+    WaitTime 5;
+    SET FWD_Conveyor;
+    WaitTime 3;
+    RESET FWD_Conveyor;
+    Path_50;
+    ! ... demás trazos ...
+    Path_40;
+    SET FWD_Conveyor;
+    WaitTime 4;
+    RESET FWD_Conveyor;
+ENDIF
 ```
-
----
-
-## 9. Evidencia de funcionamiento
-
-| Señal | Qué se verifica | Simulación (A) | Robot real (B) |
-|---|---|---|---|
-| `DI_01` | Inicia el ciclo de decoración | ![](imagenes/evidencias/sim_di01.png) | ![](imagenes/evidencias/real_di01.jpg) |
-| `DI_02` | Lleva el robot a la pose de mantenimiento | ![](imagenes/evidencias/sim_di02.png) | ![](imagenes/evidencias/real_di02.jpg) |
-| `DI_03` | Ejecuta *Farmear Aura* | ![](imagenes/evidencias/sim_di03.png) | ![](imagenes/evidencias/real_di03.jpg) |
-| `DO_01` | Activa solo durante la decoración | ![](imagenes/evidencias/sim_do01.png) | ![](imagenes/evidencias/real_do01.jpg) |
-| `DO_02` | Activa mientras el robot está en mantenimiento | ![](imagenes/evidencias/sim_do02.png) | ![](imagenes/evidencias/real_do02.jpg) |
-| `DO_03` | Activa durante *Farmear Aura* | ![](imagenes/evidencias/sim_do03.png) | ![](imagenes/evidencias/real_do03.jpg) |
-| `FWD_Conveyor` | Banda avanza (`FWD=1, BWD=0`) | ![](imagenes/evidencias/sim_fwd.png) | ![](imagenes/evidencias/real_fwd.jpg) |
-| `BWD_Conveyor` | Banda retrocede (`FWD=0, BWD=1`) | ![](imagenes/evidencias/sim_bwd.png) | ![](imagenes/evidencias/real_bwd.jpg) |
-
-### Secuencia completa del ciclo `DI_01`
-
-| Paso | Evidencia |
-|---|---|
-| Transporte inicial del pastel | ![](imagenes/evidencias/ciclo_1.jpg) |
-| Banda detenida en la estación | ![](imagenes/evidencias/ciclo_2.jpg) |
-| Decoración en ejecución (`DO_01 = 1`) | ![](imagenes/evidencias/ciclo_3.jpg) |
-| Retorno a HOME | ![](imagenes/evidencias/ciclo_4.jpg) |
-| Transporte del pastel decorado | ![](imagenes/evidencias/ciclo_5.jpg) |
-| Pastel al final de la banda, banda detenida | ![](imagenes/evidencias/ciclo_6.jpg) |
-
-### Resultado final de la decoración
-
-![Torta decorada](imagenes/evidencias/resultado_final.jpg)
-
+ 
 ---
 
 ## 10. Restricciones y seguridad
-**Responsable: A**
-
+ 
 | Requisito | Cómo se cumplió |
 |---|---|
-| Velocidades entre `v100` y `v1000` | [velocidades usadas en cada tramo] |
-| Zona máxima `z10` | [zonas usadas] |
-| Rutina iniciada desde HOME | [verificación al inicio del ciclo] |
-| Trazo continuo por palabra/elemento | [estrategia de trayectorias] |
-| Retorno a HOME al terminar | [`HomeRobot` al final del ciclo] |
+| Velocidades entre `v100` y `v1000` | `v100` en el acercamiento inicial (`Target_2450`) y la pose de mantenimiento, `v150` en *Farmear Aura*, `v200` en HOME y trazos |
+| Zona máxima `z10` | `z1` en todos los movimientos |
+| Rutina iniciada desde HOME | Cada vuelta del `WHILE TRUE` empieza con `Path_40` |
+| Trazo continuo por palabra/elemento | Un procedimiento `Path_xx` por trazo; entre trazos el marcador se levanta a `Target_2380` (z = −24 mm) |
+| Retorno a HOME al terminar | La decoración y el mantenimiento terminan con `Path_40`; tras *Farmear Aura* regresa al inicio de la siguiente vuelta del bucle |
 | Nombres claramente separados | [separación utilizada] |
-| Robot no decora con la banda en movimiento | [`ConveyorStop` + `WaitTime` antes de `Set DO_01`] |
-| Banda no se mueve hasta que el robot esté en posición segura | [retorno a HOME antes de reactivar la banda] |
-| Sin activación simultánea de `FWD` y `BWD` | [`Reset` del sentido contrario + `WaitTime 0.2` antes del `Set`] |
-| Detener la banda antes de cambiar de sentido | [implementado en `ConveyorForward` / `ConveyorBackward`] |
-| Un solo modo activo a la vez | [lógica de `main`] |
+| Robot no decora con la banda en movimiento | `RESET FWD_Conveyor` antes de iniciar `Path_50`; los trazos se ejecutan con la banda detenida |
+| Banda no se mueve hasta que el robot esté en posición segura | `Path_40` (HOME) antes del `SET FWD_Conveyor` final |
+| Sin activación simultánea de `FWD` y `BWD` | Las activaciones son secuenciales: cada `SET` va precedido de un `RESET` y de una espera (`RESET BWD_Conveyor` + `WaitTime 5` antes de `SET FWD_Conveyor`) |
+| Detener la banda antes de cambiar de sentido | `RESET BWD_Conveyor` y `WaitTime 5` antes de avanzar |
+| Un solo modo activo a la vez | Los tres `IF` se evalúan en secuencia dentro del `WHILE`: un modo termina completo antes de evaluar el siguiente |
 | Verificación previa en RobotStudio | [alcanzabilidad, límites articulares, colisiones] |
 | Pruebas iniciales a velocidad reducida | [velocidad usada en las primeras pruebas] |
-
+ 
 ---
 
 ## 11. Video de la práctica
-**Responsable: B**
+
 
 > El video se publica **únicamente** en el canal oficial de YouTube del Laboratorio LabSIR, a través del monitor de la asignatura. No se publica en canales personales.
 
 [![Video de la práctica](https://img.shields.io/badge/YouTube-LabSIR-red?logo=youtube)](URL_DEL_VIDEO)
 
-**Enlace:** [URL_DEL_VIDEO](URL_DEL_VIDEO)
+**Enlace:** vide LabSIR(https://youtu.be/JVfY9IiOYn8)
 
-Contenido del video:
-
-- [x] Introducción oficial de LabSIR
-- [ ] Transporte inicial del pastel
-- [ ] Detención de la banda en la estación de decoración
-- [ ] Ejecución de la rutina de decoración
-- [ ] Funcionamiento de `DO_01`
-- [ ] Retorno del robot a HOME
-- [ ] Transporte del pastel decorado hasta el final de la banda
-- [ ] Pose de mantenimiento
-- [ ] Funcionamiento de `DO_02`
-- [ ] Rutina *Farmear Aura*
-- [ ] Funcionamiento de `DO_03`
-- [ ] Funcionamiento bidireccional de la banda
-- [ ] Simulación en RobotStudio y ejecución en el robot real
 
 ---
 
@@ -430,29 +395,6 @@ Contenido del video:
 
 ---
 
-## 13. Estructura del repositorio
-
-```
-.
-├── README.md
-├── codigo/
-│   └── Module1.mod
-├── cad/
-│   ├── herramienta.ipt
-│   ├── herramienta.stl
-│   ├── herramienta.sat
-│   └── planos.pdf
-├── robotstudio/
-│   └── estacion.rspag
-└── imagenes/
-    ├── diagrama_flujo.png
-    ├── plano_planta.png
-    ├── decoracion.png
-    ├── herramienta/
-    └── evidencias/
-```
-
----
 
 *Universidad Nacional de Colombia · Robótica 2026-II · Laboratorio No. 01*
 
