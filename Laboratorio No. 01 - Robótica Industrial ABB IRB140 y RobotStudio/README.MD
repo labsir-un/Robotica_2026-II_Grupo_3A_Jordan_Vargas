@@ -285,24 +285,22 @@ PERS wobjdata WorkObject_2 := [FALSE,TRUE,"",[[x,y,z],[q1,q2,q3,q4]],[[0,0,0],[1
 ---
 
 ## 7. Instrucciones y funciones RAPID utilizadas
-**Responsable: A**
 
 | Instrucción / función | Tipo | Uso en este laboratorio |
 |---|---|---|
 | `MoveJ` | Movimiento | [Aproximaciones y desplazamientos libres] |
 | `MoveL` | Movimiento | [Trazos de la decoración] |
 | `MoveC` | Movimiento | [Arcos / círculos, si aplica] |
-| `MoveAbsJ` | Movimiento | [HOME y pose de mantenimiento] |
-| `CRobT` | Función | [Lectura de la posición actual] |
-| `CalcJointT` | Función | [Verificación de alcanzabilidad] |
+| `TaskPers` | Almaceniamiento de dato | [Persistente en la tarea] |
+| `Pers` | Almaceniamiento de dato | [Persistente] |
+| `Const` | Almaceniamiento de dato | [Constante, define los puntos] |
+| `Target` | Indicador | [Punto en el espacio] |
+| `Path` | Indicador | [Trayectoria definida por targets] |
 | `Set` / `Reset` | E/S | [Control de `DO_01..03`, `FWD_Conveyor`, `BWD_Conveyor`] |
 | `WaitTime` | Temporización | [Tiempos de transporte, tiempos muertos del enclavamiento] |
-| `WaitDI` / lectura de `DI_xx` | E/S | [Detección de las entradas] |
 | `IF … ELSE … ENDIF` | Control | [Selección de modos, verificación] |
-| `FOR … ENDFOR` | Control | [Repeticiones en *Farmear Aura*] |
 | `WHILE … ENDWHILE` | Control | [Bucle principal] |
 | `PROC` / `ENDPROC` | Estructura | [Procedimientos modulares] |
-| `ERROR` / `TRYNEXT` / `ERRNO` | Errores | [Manejo básico de errores] |
 | `TPWrite` / `TPErase` | FlexPendant | [Mensajes de estado] |
 | `speeddata`, `zonedata` | Datos | [`v100`–`v1000`, zona máxima `z10`] |
 
@@ -311,12 +309,10 @@ PERS wobjdata WorkObject_2 := [FALSE,TRUE,"",[[x,y,z],[q1,q2,q3,q4]],[[0,0,0],[1
 | Procedimiento | Función |
 |---|---|
 | `main` | Bucle principal; lectura de `DI_01`, `DI_02`, `DI_03` |
-| `CicloDecoracion` | Secuencia completa del ciclo `DI_01` |
-| `RutinaDecoracion` | Trayectorias de los nombres y la decoración adicional |
-| `PoseMantenimiento` | Movimiento seguro a la pose de mantenimiento |
+| `Mantenimiento` | Movimiento seguro a la pose de mantenimiento |
+| `Decoracion` | Trayectorias de los nombres y la decoración adicional |
 | `FarmearAura` | Rutina creativa |
-| `HomeRobot` | Retorno a HOME con `MoveAbsJ` |
-| `ConveyorForward` / `ConveyorBackward` / `ConveyorStop` | Control de la banda con enclavamiento |
+| `HomeRobot` | Retorno a HOME |
 
 ---
 
