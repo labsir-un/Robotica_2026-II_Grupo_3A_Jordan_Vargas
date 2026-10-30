@@ -9,7 +9,7 @@
 | **Robot** | ABB IRB 140 (controlador IRC5) |
 | **Software** | RobotStudio, RAPID |
 | **Fecha** | [30/10/2026] |
-| **Video de la práctica** | [Enlace al video en el canal oficial de YouTube de LabSIR](URL_DEL_VIDEO) |
+| **Video de la práctica** | [Enlace al video en el canal oficial de YouTube de LabSIR](https://youtu.be/JVfY9IiOYn8) |
 
 
 ---
