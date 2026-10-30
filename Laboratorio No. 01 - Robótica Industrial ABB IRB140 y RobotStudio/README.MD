@@ -5,7 +5,7 @@
 | | |
 |---|---|
 | **Integrante 1** | Luis Felipe Vargas Bernal — luvargasbe@unal.edu.co |
-| **Integrante B** | [Nombre completo B] — [correo] |
+| **Integrante B** | Isaac Jordán Oviedo - ijordan@unal.edu.co |
 | **Robot** | ABB IRB 140 (controlador IRC5) |
 | **Software** | RobotStudio, RAPID |
 | **Fecha** | [30/10/2026] |
