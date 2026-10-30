@@ -121,8 +121,8 @@ Lógica de la banda:
 ```mermaid
 flowchart TD
     S([Inicio]) --> W{Leer entradas}
-    W -- "DI_01" --> C1[Ciclo de decoración]
-    W -- "DI_02" --> C2[Pose de mantenimiento]
+    W -- "DI_01" --> C1[Pose de mantenimiento]
+    W -- "DI_02" --> C2[Rutina de decoración]
     W -- "DI_03" --> C3[Farmear Aura]
     W -- "Ninguna" --> W
     C1 --> W
