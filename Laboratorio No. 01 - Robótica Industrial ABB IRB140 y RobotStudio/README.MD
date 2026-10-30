@@ -130,11 +130,11 @@ flowchart TD
     C3 --> W
 ```
 
-### 2.2 Ciclo de decoración (`DI_01`)
+### 2.2 Ciclo de decoración (`DI_02`)
 
 ```mermaid
 flowchart TD
-    A([DI_01 = 1]) --> B{Robot en HOME?}
+    A([DI_02 = 1]) --> B{Robot en HOME?}
     B -- No --> B1[Ir a HOME] --> C
     B -- Si --> C[Banda FWD / BWD]
     C --> D[Transporte del pastel hacia el robot]
@@ -166,7 +166,7 @@ flowchart TD
     B -- Detener --> I["Reset FWD y BWD"]
 ```
 
-### 2.4 Pose de mantenimiento (`DI_02`) y *Farmear Aura* (`DI_03`)
+### 2.4 Pose de mantenimiento (`DI_01`) y *Farmear Aura* (`DI_03`)
 [Agregar un diagrama Mermaid para cada rutina: ir a la pose / activar `DO_02` / esperar a que `DI_02` se desactive / `Reset DO_02`; y activar `DO_03` / secuencia / `Reset DO_03` / HOME.]
 
 ---
