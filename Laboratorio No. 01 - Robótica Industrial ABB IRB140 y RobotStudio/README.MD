@@ -4,14 +4,13 @@
 
 | | |
 |---|---|
-| **Integrante A** | [Nombre completo A] — [correo] |
+| **Integrante 1** | Luis Felipe Vargas Bernal — luvargasbe@unal.edu.co |
 | **Integrante B** | [Nombre completo B] — [correo] |
 | **Robot** | ABB IRB 140 (controlador IRC5) |
-| **Software** | RobotStudio [versión], RAPID |
-| **Fecha** | [dd/mm/aaaa] |
+| **Software** | RobotStudio, RAPID |
+| **Fecha** | [30/10/2026] |
 | **Video de la práctica** | [Enlace al video en el canal oficial de YouTube de LabSIR](URL_DEL_VIDEO) |
 
-> **Responsables:** cada sección indica quién la redacta (**A** = integrante con el PC de RobotStudio, **B** = el otro integrante). Borrar estas marcas y esta nota antes de entregar.
 
 ---
 
@@ -35,17 +34,20 @@
 
 ## 1. Descripción de la solución
 **Responsable: A**
-
+ 
 ### 1.1 Objetivo
 Celda simplificada para la decoración automática de una torta virtual (superficie plana [circular / rectangular] de [dimensiones] mm, equivalente aproximadamente a una torta para 20 personas) con un robot ABB IRB 140, integrada con una banda transportadora mediante señales digitales.
-
+ 
+<!-- EDITAR: forma y dimensiones de la torta -->
+ 
 La decoración incluye:
-
+ 
 - Los nombres de los integrantes, claramente separados.
 - Una decoración adicional: [describir el diseño elegido].
-
+<!-- EDITAR: el diseño adicional que hiciste -->
+ 
 ### 1.2 Elementos de la celda
-
+ 
 | Elemento | Descripción |
 |---|---|
 | Manipulador | ABB IRB 140 |
@@ -55,9 +57,11 @@ La decoración incluye:
 | Herramienta | Soporte de marcador/plumón fijado al flange |
 | Superficie de trabajo | [descripción] |
 | Detección de posición | [tiempo de desplazamiento / sensor] |
-
+ 
+<!-- EDITAR: banda, superficie de trabajo y detección de posición (en el código, ¿WaitTime o sensor?) -->
+ 
 ### 1.3 Asignación de señales
-
+ 
 | Señal | Tipo | Función |
 |---|---|---|
 | `DI_01` | Entrada | Inicia el ciclo automático de transporte y decoración |
@@ -68,18 +72,18 @@ La decoración incluye:
 | `DO_03` | Salida | Activa durante la rutina *Farmear Aura* |
 | `FWD_Conveyor` | Salida | Banda en sentido de avance |
 | `BWD_Conveyor` | Salida | Banda en sentido contrario |
-
+ 
 Lógica de la banda:
-
+ 
 | Estado | `FWD_Conveyor` | `BWD_Conveyor` |
 |---|:---:|:---:|
 | Adelante | 1 | 0 |
 | Atrás | 0 | 1 |
 | Detenida | 0 | 0 |
 | **Prohibido** | 1 | 1 |
-
+ 
 ### 1.4 Secuencia del ciclo `DI_01`
-
+ 
 1. Verificar que el robot esté en HOME y el pastel sobre la banda.
 2. Activar la banda hacia la estación de decoración.
 3. Detener completamente la banda cuando el pastel llegue a la posición de decoración (por [tiempo / sensor]).
@@ -88,18 +92,25 @@ Lógica de la banda:
 6. Con el robot en posición segura, reactivar la banda.
 7. Transportar el pastel decorado hasta el extremo final de la banda.
 8. Detener la banda, desactivar las señales de movimiento y finalizar el ciclo.
-
+<!-- EDITAR: paso 3, "tiempo" o "sensor" -->
+ 
 ### 1.5 Decoración
 [Descripción del diseño, tipografía/trazos usados para los nombres, cómo se mantuvo el trazo continuo, velocidades y zonas empleadas.]
-
+ 
+<!-- EDITAR: describe el diseño, cómo trazaste los nombres, qué speeddata/zonedata usaste -->
+ 
 ![Vista de la decoración](imagenes/decoracion.png)
-
+ 
 ### 1.6 Rutina *Farmear Aura*
 [Descripción de la coreografía: duración aproximada (10–20 s), movimientos `MoveJ`/`MoveL` usados, estructura de programación intermedia utilizada, retorno a HOME.]
-
+ 
+<!-- EDITAR: sale directo de tu procedimiento FarmearAura -->
+ 
 ### 1.7 Pose de mantenimiento
 [Descripción de la pose, valores articulares y por qué facilita instalar/retirar la herramienta e inspeccionar.]
-
+ 
+<!-- EDITAR: valores articulares del MoveAbsJ de PoseMantenimiento -->
+ 
 ---
 
 ## 2. Diagrama de flujo
