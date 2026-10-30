@@ -134,18 +134,18 @@ flowchart TD
     K -- Sí --> L[Set DO_02]
     L --> M[Movimiento FWD_Conveyor durante 3 s]
     M --> N[Comienza la rutina de decoración]
-    N --> O[Regresa a Home]
-    O --> P[Reset DO_02]
-    P --> D
+    N --> O[Movimiento FWD_Conveyor durante 4 s]
+    O --> P[Regresa a Home]
+    P --> Q[Reset DO_02]
+    Q --> D
 
     K -- No --> Q{DI_03 == 1?}
 
     Q -- Sí --> R[Set DO_03]
-    R --> S[Movimiento FWD_Conveyor durante 4 s]
-    S --> T[Comienza el movimiento en el aire - Farmeo de Aura]
-    T --> U[Regresa a Home]
-    U --> V[Reset DO_03]
-    V --> D
+    R --> S[Comienza el movimiento en el aire - Farmeo de Aura]
+    S --> T[Regresa a Home]
+    T --> U[Reset DO_03]
+    U --> D
 
     Q -- No --> W[Espera la activación de una entrada digital]
     W --> D
