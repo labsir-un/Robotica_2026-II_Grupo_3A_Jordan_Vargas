@@ -5,11 +5,11 @@
 | | |
 |---|---|
 | **Integrante 1** | Luis Felipe Vargas Bernal — luvargasbe@unal.edu.co |
-| **Integrante B** | [Nombre completo B] — [correo] |
+| **Integrante B** | Isaac Jordán Oviedo - ijordan@unal.edu.co |
 | **Robot** | ABB IRB 140 (controlador IRC5) |
 | **Software** | RobotStudio, RAPID |
 | **Fecha** | [30/10/2026] |
-| **Video de la práctica** | [Enlace al video en el canal oficial de YouTube de LabSIR](URL_DEL_VIDEO) |
+| **Video de la práctica** | [Enlace al video en el canal oficial de YouTube de LabSIR](https://youtu.be/JVfY9IiOYn8) |
 
 
 ---
@@ -121,8 +121,8 @@ Lógica de la banda:
 ```mermaid
 flowchart TD
     S([Inicio]) --> W{Leer entradas}
-    W -- "DI_01" --> C1[Ciclo de decoración]
-    W -- "DI_02" --> C2[Pose de mantenimiento]
+    W -- "DI_01" --> C1[Pose de mantenimiento]
+    W -- "DI_02" --> C2[Rutina de decoración]
     W -- "DI_03" --> C3[Farmear Aura]
     W -- "Ninguna" --> W
     C1 --> W
@@ -130,11 +130,11 @@ flowchart TD
     C3 --> W
 ```
 
-### 2.2 Ciclo de decoración (`DI_01`)
+### 2.2 Ciclo de decoración (`DI_02`)
 
 ```mermaid
 flowchart TD
-    A([DI_01 = 1]) --> B{Robot en HOME?}
+    A([DI_02 = 1]) --> B{Robot en HOME?}
     B -- No --> B1[Ir a HOME] --> C
     B -- Si --> C[Banda FWD / BWD]
     C --> D[Transporte del pastel hacia el robot]
@@ -166,7 +166,7 @@ flowchart TD
     B -- Detener --> I["Reset FWD y BWD"]
 ```
 
-### 2.4 Pose de mantenimiento (`DI_02`) y *Farmear Aura* (`DI_03`)
+### 2.4 Pose de mantenimiento (`DI_01`) y *Farmear Aura* (`DI_03`)
 [Agregar un diagrama Mermaid para cada rutina: ir a la pose / activar `DO_02` / esperar a que `DI_02` se desactive / `Reset DO_02`; y activar `DO_03` / secuencia / `Reset DO_03` / HOME.]
 
 ---
