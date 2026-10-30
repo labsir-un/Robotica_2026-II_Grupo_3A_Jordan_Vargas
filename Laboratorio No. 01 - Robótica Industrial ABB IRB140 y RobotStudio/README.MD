@@ -8,7 +8,7 @@
 | **Integrante B** | Isaac Jordán Oviedo - ijordan@unal.edu.co |
 | **Robot** | ABB IRB 140 (controlador IRC5) |
 | **Software** | RobotStudio, RAPID |
-| **Fecha** | [30/10/2026] |
+| **Fecha** | 30/10/2026 |
 | **Video de la práctica** | [Enlace al video en el canal oficial de YouTube de LabSIR](https://youtu.be/JVfY9IiOYn8) |
 
 
@@ -133,18 +133,19 @@ flowchart TD
 
     K -- Sí --> L[Set DO_02]
     L --> M[Movimiento FWD_Conveyor durante 3 s]
-    M --> N[Comienza la rutina de decoración - Movimiento FWD_Conveyor durante 4 s]
-    N --> O[Regresa a Home]
-    O --> P[Reset DO_02]
-    P --> D
+    M --> N[Comienza la rutina de decoración]
+    N --> O[Movimiento FWD_Conveyor durante 4 s]
+    O --> P[Regresa a Home]
+    P --> Q[Reset DO_02]
+    Q --> D
 
     K -- No --> Q{DI_03 == 1?}
 
-    Q -- Sí --> S[Set DO_03]
-    S --> T[Comienza el movimiento en el aire - Farmeo de Aura]
-    T --> U[Regresa a Home]
-    U --> V[Reset DO_03]
-    V --> D
+    Q -- Sí --> R[Set DO_03]
+    R --> S[Comienza el movimiento en el aire - Farmeo de Aura]
+    S --> T[Regresa a Home]
+    T --> U[Reset DO_03]
+    U --> D
 
     Q -- No --> W[Espera la activación de una entrada digital]
     W --> D
@@ -263,26 +264,59 @@ Posibles causas identificadas:
 ---
 
 ## 6. WorkObjects
-**Responsable: A**
 
-La misma rutina de decoración se programa respecto a un `wobjdata` y se reutiliza cambiando únicamente el sistema de coordenadas de referencia.
 
-| WorkObject | Ubicación | Uso |
-|---|---|---|
-| `[WorkObject_1]` | Cuadrante `x(+), y(+)` | [Estación de decoración en la banda / superficie fija] |
-| `[WorkObject_2]` | Cuadrante `x(+), y(−)` | [Estación de decoración en la banda / superficie fija] |
+Todos los puntos de las trayectorias del programa están definidos respecto a un `wobjdata`, de modo que la misma rutina se reutiliza cambiando únicamente el sistema de coordenadas de referencia. En este laboratorio el WorkObject se definió de dos formas: en RobotStudio (`Workobject_1`) y con el robot real mediante el método de 3 puntos (`Wfeli`).
 
-- Método de definición del `wobjdata`: [3 puntos: X1, X2, Y1].
-- Una de las posiciones corresponde a la estación de decoración sobre la banda: [cuál].
+### 6.1 WorkObject utilizado en la práctica
+Tanto la simulación como la ejecución en el robot real usan `Workobject_1`, es decir, la definición hecha en RobotStudio. La calibración física (`Wfeli`) se realizó para documentar el procedimiento y obtener los datos que pedía la práctica; se compara más abajo, pero el programa no la utiliza.
+
+En el código, los trazos de la decoración y la rutina *Farmear Aura* se mueven con `\WObj:=Workobject_1`; el HOME y la pose de mantenimiento se definen respecto a `wobj0`.
+
+### 6.2 Definición en RobotStudio: `Workobject_1`
+- Método de definición: [cómo lo definiste en RobotStudio].
+- `uframe`: origen en `[649.930, −460.000, 137.999]` mm y cuaternión `[0.017452, 0, 0.999848, 0]` (giro de 178° sobre Y, con el eje Z apuntando hacia abajo, hacia la superficie).
+- `oframe`: desplazamiento de `[0, 0, −18.2]` mm.
+- Origen efectivo del marco: `[649.295, −460.000, 156.188]` mm, en el cuadrante `x(+), y(−)`.
 
 ```rapid
-PERS wobjdata WorkObject_1 := [FALSE,TRUE,"",[[x,y,z],[q1,q2,q3,q4]],[[0,0,0],[1,0,0,0]]];
-PERS wobjdata WorkObject_2 := [FALSE,TRUE,"",[[x,y,z],[q1,q2,q3,q4]],[[0,0,0],[1,0,0,0]]];
+TASK PERS wobjdata Workobject_1 := [FALSE,TRUE,"",[[649.930201004,-460,137.998781654],[0.017452407,0,0.999847695,0]],[[0,0,-18.2],[1,0,0,0]]];
 ```
 
-![Decoración con cada WorkObject](imagenes/evidencias/workobjects.png)
+![Workobject_1 en RobotStudio](imagenes/evidencias/workobject_robotstudio.png)
 
----
+### 6.3 Calibración con el robot real: `Wfeli`
+Se definió con el método de 3 puntos (`X1`, `X2`, `Y1`):
+
+| Punto | Posición `[x, y, z]` (mm) |
+|---|---|
+| `X1` | `[584.345, −241.788, 124.362]` |
+| `X2` | `[410.747, −244.455, 124.953]` |
+| `Y1` | `[588.688, 29.837, 127.407]` |
+
+El origen queda en la proyección de `Y1` sobre la recta `X1–X2`: `[592.850, −241.657, 124.334]` mm, también en el cuadrante `x(+), y(−)`. El eje X va de `X1` hacia `X2` (sentido −x de la base) y el eje Y hacia `Y1`, por lo que el eje Z apunta hacia abajo, hacia la superficie. Los puntos cubren 173.6 mm en X y 271.5 mm en Y, con alturas entre 124.4 y 127.4 mm.
+
+```rapid
+TASK PERS wobjdata Wfeli := [FALSE,TRUE,"",[[0,0,0],[1,0,0,0]],[[592.85,-241.657,124.334],[0.00174513,0.00767284,-0.999953,-0.00564666]]];
+```
+
+![Calibración de Wfeli con el robot real](imagenes/evidencias/workobject_real.jpg)
+
+### 6.4 Comparación
+
+| Parámetro | `Workobject_1` (RobotStudio) | `Wfeli` (robot real) | Diferencia (real − RobotStudio) |
+|---|---:|---:|---:|
+| Origen X (mm) | 649.295 | 592.850 | −56.445 |
+| Origen Y (mm) | −460.000 | −241.657 | +218.343 |
+| Origen Z (mm) | 156.188 | 124.334 | −31.854 |
+| Distancia entre orígenes (mm) | — | — | **227.8** |
+| Giro del cuaternión sobre Y | 178.0° | 179.8° | — |
+| Inclinación del eje Z respecto a la vertical | 2.0° | 0.7° | — |
+| Giro relativo entre los dos marcos | — | — | 2.5° |
+
+Los dos marcos tienen el eje Z hacia abajo y casi la misma orientación, pero sus orígenes están separados 227.8 mm en el plano y 31.9 mm en altura. 
+
+
 
 ## 7. Instrucciones y funciones RAPID utilizadas
 
@@ -317,100 +351,65 @@ PERS wobjdata WorkObject_2 := [FALSE,TRUE,"",[[x,y,z],[q1,q2,q3,q4]],[[0,0,0],[1
 ---
 
 ## 8. Código RAPID
-**Responsable: A**
+
 
 El código completo se encuentra en [`codigo/`](codigo/):
 
 - [`codigo/Module1.mod`](codigo/Module1.mod)
 - Respaldo completo de la estación: [`robotstudio/`](robotstudio/)
 
-Fragmento representativo (enclavamiento de la banda):
-
+Fragmento representativo (movimiento de la banda en el ciclo de decoración):
+ 
 ```rapid
-PROC ConveyorForward()
-    Reset BWD_Conveyor;
-    WaitTime 0.2;
-    Set FWD_Conveyor;
-ENDPROC
+IF DI_02=1 THEN
+    SET DO_02;
+    SET BWD_Conveyor;
+    WaitTime 3;
+    RESET BWD_Conveyor;
+    WaitTime 5;
+    SET FWD_Conveyor;
+    WaitTime 3;
+    RESET FWD_Conveyor;
+    Path_50;
+    ! ... demás trazos ...
+    Path_40;
+    SET FWD_Conveyor;
+    WaitTime 4;
+    RESET FWD_Conveyor;
+ENDIF
 ```
-
----
-
-## 9. Evidencia de funcionamiento
-
-| Señal | Qué se verifica | Simulación (A) | Robot real (B) |
-|---|---|---|---|
-| `DI_01` | Inicia el ciclo de decoración | ![](imagenes/evidencias/sim_di01.png) | ![](imagenes/evidencias/real_di01.jpg) |
-| `DI_02` | Lleva el robot a la pose de mantenimiento | ![](imagenes/evidencias/sim_di02.png) | ![](imagenes/evidencias/real_di02.jpg) |
-| `DI_03` | Ejecuta *Farmear Aura* | ![](imagenes/evidencias/sim_di03.png) | ![](imagenes/evidencias/real_di03.jpg) |
-| `DO_01` | Activa solo durante la decoración | ![](imagenes/evidencias/sim_do01.png) | ![](imagenes/evidencias/real_do01.jpg) |
-| `DO_02` | Activa mientras el robot está en mantenimiento | ![](imagenes/evidencias/sim_do02.png) | ![](imagenes/evidencias/real_do02.jpg) |
-| `DO_03` | Activa durante *Farmear Aura* | ![](imagenes/evidencias/sim_do03.png) | ![](imagenes/evidencias/real_do03.jpg) |
-| `FWD_Conveyor` | Banda avanza (`FWD=1, BWD=0`) | ![](imagenes/evidencias/sim_fwd.png) | ![](imagenes/evidencias/real_fwd.jpg) |
-| `BWD_Conveyor` | Banda retrocede (`FWD=0, BWD=1`) | ![](imagenes/evidencias/sim_bwd.png) | ![](imagenes/evidencias/real_bwd.jpg) |
-
-### Secuencia completa del ciclo `DI_01`
-
-| Paso | Evidencia |
-|---|---|
-| Transporte inicial del pastel | ![](imagenes/evidencias/ciclo_1.jpg) |
-| Banda detenida en la estación | ![](imagenes/evidencias/ciclo_2.jpg) |
-| Decoración en ejecución (`DO_01 = 1`) | ![](imagenes/evidencias/ciclo_3.jpg) |
-| Retorno a HOME | ![](imagenes/evidencias/ciclo_4.jpg) |
-| Transporte del pastel decorado | ![](imagenes/evidencias/ciclo_5.jpg) |
-| Pastel al final de la banda, banda detenida | ![](imagenes/evidencias/ciclo_6.jpg) |
-
-### Resultado final de la decoración
-
-![Torta decorada](imagenes/evidencias/resultado_final.jpg)
-
+ 
 ---
 
 ## 10. Restricciones y seguridad
-**Responsable: A**
-
+ 
 | Requisito | Cómo se cumplió |
 |---|---|
-| Velocidades entre `v100` y `v1000` | [velocidades usadas en cada tramo] |
-| Zona máxima `z10` | [zonas usadas] |
-| Rutina iniciada desde HOME | [verificación al inicio del ciclo] |
-| Trazo continuo por palabra/elemento | [estrategia de trayectorias] |
-| Retorno a HOME al terminar | [`HomeRobot` al final del ciclo] |
+| Velocidades entre `v100` y `v1000` | `v100` en el acercamiento inicial (`Target_2450`) y la pose de mantenimiento, `v150` en *Farmear Aura*, `v200` en HOME y trazos |
+| Zona máxima `z10` | `z1` en todos los movimientos |
+| Rutina iniciada desde HOME | Cada vuelta del `WHILE TRUE` empieza con `Path_40` |
+| Trazo continuo por palabra/elemento | Un procedimiento `Path_xx` por trazo; entre trazos el marcador se levanta a `Target_2380` (z = −24 mm) |
+| Retorno a HOME al terminar | La decoración y el mantenimiento terminan con `Path_40`; tras *Farmear Aura* regresa al inicio de la siguiente vuelta del bucle |
 | Nombres claramente separados | [separación utilizada] |
-| Robot no decora con la banda en movimiento | [`ConveyorStop` + `WaitTime` antes de `Set DO_01`] |
-| Banda no se mueve hasta que el robot esté en posición segura | [retorno a HOME antes de reactivar la banda] |
-| Sin activación simultánea de `FWD` y `BWD` | [`Reset` del sentido contrario + `WaitTime 0.2` antes del `Set`] |
-| Detener la banda antes de cambiar de sentido | [implementado en `ConveyorForward` / `ConveyorBackward`] |
-| Un solo modo activo a la vez | [lógica de `main`] |
+| Robot no decora con la banda en movimiento | `RESET FWD_Conveyor` antes de iniciar `Path_50`; los trazos se ejecutan con la banda detenida |
+| Banda no se mueve hasta que el robot esté en posición segura | `Path_40` (HOME) antes del `SET FWD_Conveyor` final |
+| Sin activación simultánea de `FWD` y `BWD` | Las activaciones son secuenciales: cada `SET` va precedido de un `RESET` y de una espera (`RESET BWD_Conveyor` + `WaitTime 5` antes de `SET FWD_Conveyor`) |
+| Detener la banda antes de cambiar de sentido | `RESET BWD_Conveyor` y `WaitTime 5` antes de avanzar |
+| Un solo modo activo a la vez | Los tres `IF` se evalúan en secuencia dentro del `WHILE`: un modo termina completo antes de evaluar el siguiente |
 | Verificación previa en RobotStudio | [alcanzabilidad, límites articulares, colisiones] |
 | Pruebas iniciales a velocidad reducida | [velocidad usada en las primeras pruebas] |
-
+ 
 ---
 
 ## 11. Video de la práctica
-**Responsable: B**
+
 
 > El video se publica **únicamente** en el canal oficial de YouTube del Laboratorio LabSIR, a través del monitor de la asignatura. No se publica en canales personales.
 
 [![Video de la práctica](https://img.shields.io/badge/YouTube-LabSIR-red?logo=youtube)](URL_DEL_VIDEO)
 
-**Enlace:** [URL_DEL_VIDEO](URL_DEL_VIDEO)
+**Enlace:** vide LabSIR(https://youtu.be/JVfY9IiOYn8)
 
-Contenido del video:
-
-- [x] Introducción oficial de LabSIR
-- [ ] Transporte inicial del pastel
-- [ ] Detención de la banda en la estación de decoración
-- [ ] Ejecución de la rutina de decoración
-- [ ] Funcionamiento de `DO_01`
-- [ ] Retorno del robot a HOME
-- [ ] Transporte del pastel decorado hasta el final de la banda
-- [ ] Pose de mantenimiento
-- [ ] Funcionamiento de `DO_02`
-- [ ] Rutina *Farmear Aura*
-- [ ] Funcionamiento de `DO_03`
-- [ ] Funcionamiento bidireccional de la banda
-- [ ] Simulación en RobotStudio y ejecución en el robot real
 
 ---
 
@@ -425,29 +424,6 @@ Contenido del video:
 
 ---
 
-## 13. Estructura del repositorio
-
-```
-.
-├── README.md
-├── codigo/
-│   └── Module1.mod
-├── cad/
-│   ├── herramienta.ipt
-│   ├── herramienta.stl
-│   ├── herramienta.sat
-│   └── planos.pdf
-├── robotstudio/
-│   └── estacion.rspag
-└── imagenes/
-    ├── diagrama_flujo.png
-    ├── plano_planta.png
-    ├── decoracion.png
-    ├── herramienta/
-    └── evidencias/
-```
-
----
 
 *Universidad Nacional de Colombia · Robótica 2026-II · Laboratorio No. 01*
 
