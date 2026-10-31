@@ -191,9 +191,9 @@ Elementos indicados en el plano:
 | ![CAD](imagenes/modelocad.jpeg) | ![Real](imagenes/real.jpeg) | ![Montada](imagenes/montada.jpeg) |
 
 ### 4.4 Archivos
-- Modelo original: [`cad/herramienta.ipt`](cad/portaMarcador.ipt)
-- Exportación STL: [`cad/herramienta.stl`](cad/portaMarcador.stl)
-- Exportación SAT: [`cad/herramienta.sat`](cad/roboticasintecho.sat)
+- Modelo original: [`cad/herramienta.ipt`](CAD/portaMarcador.ipt)
+- Exportación STL: [`cad/herramienta.stl`](CAD/portaMarcador.stl)
+- Exportación SAT: [`cad/herramienta.sat`](CAD/roboticasintecho.sat)
 - Planos de fabricación: [`cad/planos.pdf`](cad/planos.pdf)
 
 ---
