@@ -1,4 +1,4 @@
-# Laboratorio No. 01 — Robótica Industrial: Trayectorias, Entradas y Salidas Digitales
+# Laboratorio No. 01 — Robótica: Trayectorias, Entradas y Salidas Digitales
 
 **Robótica 2026-II · Universidad Nacional de Colombia**
 
@@ -152,7 +152,7 @@ flowchart TD
 ## 3. Plano de planta
 
 ![Plano de planta de la Banda](imagenes/planoBanda.jpeg)
-![Plano de planta del Pastel](imagenes/planPastel.jpeg)
+![Plano de planta del Pastel](imagenes/planoPastel.jpeg)
 ![Plano de planta del Robot](imagenes/planoRobot.jpeg)
 
 Elementos indicados en el plano:
@@ -198,17 +198,16 @@ Elementos indicados en el plano:
 
 ---
 
-
-## 6. WorkObjects
+## 5. WorkObjects
 
 Todos los puntos de las trayectorias del programa están definidos respecto a un `wobjdata`, de modo que la misma rutina se reutiliza cambiando únicamente el sistema de coordenadas de referencia. En este laboratorio el WorkObject se definió de dos formas: en RobotStudio (`Workobject_1`) y con el robot real mediante el método de 3 puntos (`Wfeli`).
 
-### 6.1 WorkObject utilizado en la práctica
+### 5.1 WorkObject utilizado en la práctica
 Tanto la simulación como la ejecución en el robot real usan `Workobject_1`, es decir, la definición hecha en RobotStudio. La calibración física (`Wfeli`) se realizó para documentar el procedimiento y obtener los datos que pedía la práctica; se compara más abajo, pero el programa no la utiliza.
 
 En el código, los trazos de la decoración y la rutina *Farmear Aura* se mueven con `\WObj:=Workobject_1`; el HOME y la pose de mantenimiento se definen respecto a `wobj0`.
 
-### 6.2 Definición en RobotStudio: `Workobject_1`
+### 5.2 Definición en RobotStudio: `Workobject_1`
 - Método de definición: [cómo lo definiste en RobotStudio].
 - `uframe`: origen en `[649.930, −460.000, 137.999]` mm y cuaternión `[0.017452, 0, 0.999848, 0]` (giro de 178° sobre Y, con el eje Z apuntando hacia abajo, hacia la superficie).
 - `oframe`: desplazamiento de `[0, 0, −18.2]` mm.
@@ -218,9 +217,7 @@ En el código, los trazos de la decoración y la rutina *Farmear Aura* se mueven
 TASK PERS wobjdata Workobject_1 := [FALSE,TRUE,"",[[649.930201004,-460,137.998781654],[0.017452407,0,0.999847695,0]],[[0,0,-18.2],[1,0,0,0]]];
 ```
 
-![Workobject_1 en RobotStudio](imagenes/evidencias/workobject_robotstudio.png)
-
-### 6.3 Calibración con el robot real: `Wfeli`
+### 5.3 Calibración con el robot real: `Wfeli`
 Se definió con el método de 3 puntos (`X1`, `X2`, `Y1`):
 
 | Punto | Posición `[x, y, z]` (mm) |
@@ -235,9 +232,7 @@ El origen queda en la proyección de `Y1` sobre la recta `X1–X2`: `[592.850, �
 TASK PERS wobjdata Wfeli := [FALSE,TRUE,"",[[0,0,0],[1,0,0,0]],[[592.85,-241.657,124.334],[0.00174513,0.00767284,-0.999953,-0.00564666]]];
 ```
 
-![Calibración de Wfeli con el robot real](imagenes/evidencias/workobject_real.jpg)
-
-### 6.4 Comparación
+### 5.4 Comparación
 
 | Parámetro | `Workobject_1` (RobotStudio) | `Wfeli` (robot real) | Diferencia (real − RobotStudio) |
 |---|---:|---:|---:|
@@ -251,9 +246,7 @@ TASK PERS wobjdata Wfeli := [FALSE,TRUE,"",[[0,0,0],[1,0,0,0]],[[592.85,-241.657
 
 Los dos marcos tienen el eje Z hacia abajo y casi la misma orientación, pero sus orígenes están separados 227.8 mm en el plano y 31.9 mm en altura. 
 
-
-
-## 7. Instrucciones y funciones RAPID utilizadas
+## 6. Instrucciones y funciones RAPID utilizadas
 
 | Instrucción / función | Tipo | Uso en este laboratorio |
 |---|---|---|
@@ -285,7 +278,7 @@ Los dos marcos tienen el eje Z hacia abajo y casi la misma orientación, pero su
 
 ---
 
-## 8. Código RAPID
+## 7. Código RAPID
 
 
 El código completo se encuentra en [`codigo/`](codigo/):
@@ -316,7 +309,7 @@ ENDIF
  
 ---
 
-## 9. Restricciones y seguridad
+## 8. Restricciones y seguridad
  
 | Requisito | Cómo se cumplió |
 |---|---|
@@ -336,29 +329,4 @@ ENDIF
  
 ---
 
-## 10. Video de la práctica
-
-
-> El video se publica **únicamente** en el canal oficial de YouTube del Laboratorio LabSIR, a través del monitor de la asignatura. No se publica en canales personales.
-
-[![Video de la práctica](https://img.shields.io/badge/YouTube-LabSIR-red?logo=youtube)](URL_DEL_VIDEO)
-
-**Enlace:** vide LabSIR(https://youtu.be/JVfY9IiOYn8)
-
-
----
-
-## 11. Conclusiones
-**Responsable: B (con revisión de A)**
-
-- [Conclusión sobre la integración robot–banda mediante señales digitales.]
-- [Conclusión sobre la calibración de la herramienta y las diferencias real vs. simulación.]
-- [Conclusión sobre la reutilización de trayectorias con WorkObjects.]
-- [Dificultades encontradas y cómo se resolvieron.]
-- [Posibles mejoras: sensor de posición en lugar de tiempo, etc.]
-
----
-
-
 *Universidad Nacional de Colombia · Robótica 2026-II · Laboratorio No. 01*
-
