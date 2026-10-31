@@ -379,7 +379,7 @@ ENDIF
  
 ---
 
-## 10. Restricciones y seguridad
+## 9. Restricciones y seguridad
  
 | Requisito | Cómo se cumplió |
 |---|---|
@@ -399,7 +399,7 @@ ENDIF
  
 ---
 
-## 11. Video de la práctica
+## 10. Video de la práctica
 
 
 > El video se publica **únicamente** en el canal oficial de YouTube del Laboratorio LabSIR, a través del monitor de la asignatura. No se publica en canales personales.
@@ -411,7 +411,7 @@ ENDIF
 
 ---
 
-## 12. Conclusiones
+## 11. Conclusiones
 **Responsable: B (con revisión de A)**
 
 - [Conclusión sobre la integración robot–banda mediante señales digitales.]
