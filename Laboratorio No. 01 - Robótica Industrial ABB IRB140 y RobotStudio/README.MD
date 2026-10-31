@@ -49,10 +49,7 @@ La decoración incluye:
 | Módulo de E/S | DSQC 652 (3HAC025917-001/00) |
 | Banda transportadora | Banda del Laboratorio |
 | Herramienta | Soporte de marcador fijado al flange (impresión 3d) |
-| Superficie de trabajo | [descripción] |
-| Detección de posición | [tiempo de desplazamiento / sensor] |
  
-
  
 ### 1.3 Asignación de señales
  
