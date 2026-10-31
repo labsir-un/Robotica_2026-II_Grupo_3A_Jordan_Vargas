@@ -218,15 +218,15 @@ TASK PERS wobjdata Workobject_1 := [FALSE,TRUE,"",[[649.930201004,-460,137.99878
 ```
 
 ### 5.3 Calibración con el robot real: `Wfeli`
-Se definió con el método de 3 puntos (`X1`, `X2`, `Y1`):
+Se definió con el método de 3 puntos (`O`, `X`, `Y`):
 
 | Punto | Posición `[x, y, z]` (mm) |
 |---|---|
-| `X1` | `[584.345, −241.788, 124.362]` |
-| `X2` | `[410.747, −244.455, 124.953]` |
-| `Y1` | `[588.688, 29.837, 127.407]` |
+| `O` | `[584.345, −241.788, 124.362]` |
+| `X` | `[410.747, −244.455, 124.953]` |
+| `Y` | `[588.688, 29.837, 127.407]` |
 
-El origen queda en la proyección de `Y1` sobre la recta `X1–X2`: `[592.850, −241.657, 124.334]` mm, también en el cuadrante `x(+), y(−)`. El eje X va de `X1` hacia `X2` (sentido −x de la base) y el eje Y hacia `Y1`, por lo que el eje Z apunta hacia abajo, hacia la superficie. Los puntos cubren 173.6 mm en X y 271.5 mm en Y, con alturas entre 124.4 y 127.4 mm.
+El origen queda en la proyección de `Y` sobre la recta `O–X`: `[592.850, −241.657, 124.334]` mm, también en el cuadrante `x(+), y(−)`. El eje X va de `O` hacia `X` (sentido −x de la base) y el eje Y hacia `Y`, por lo que el eje Z apunta hacia abajo, hacia la superficie. Los puntos cubren 173.6 mm en X y 271.5 mm en Y, con alturas entre 124.4 y 127.4 mm.
 
 ```rapid
 TASK PERS wobjdata Wfeli := [FALSE,TRUE,"",[[0,0,0],[1,0,0,0]],[[592.85,-241.657,124.334],[0.00174513,0.00767284,-0.999953,-0.00564666]]];
