@@ -152,7 +152,7 @@ flowchart TD
 ## 3. Plano de planta
 
 ![Plano de planta de la Banda](imagenes/planoBanda.jpeg)
-![Plano de planta del Pastel](imagenes/planPastel.jpeg)
+![Plano de planta del Pastel](imagenes/planoPastel.jpeg)
 ![Plano de planta del Robot](imagenes/planoRobot.jpeg)
 
 Elementos indicados en el plano:
