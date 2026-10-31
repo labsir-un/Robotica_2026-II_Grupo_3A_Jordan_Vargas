@@ -20,13 +20,12 @@
 2. [Diagrama de flujo](#2-diagrama-de-flujo)
 3. [Plano de planta](#3-plano-de-planta)
 4. [Diseño de la herramienta](#4-diseño-de-la-herramienta)
-5. [Calibración de la herramienta: real vs. RobotStudio](#5-calibración-de-la-herramienta-real-vs-robotstudio)
-6. [WorkObjects](#6-workobjects)
-7. [Instrucciones y funciones RAPID utilizadas](#7-instrucciones-y-funciones-rapid-utilizadas)
-8. [Código RAPID](#8-código-rapid)
-9. [Restricciones y seguridad](#10-restricciones-y-seguridad)
-10. [Video de la práctica](#11-video-de-la-práctica)
-11. [Conclusiones](#12-conclusiones)
+5. [WorkObjects](#6-workobjects)
+6. [Instrucciones y funciones RAPID utilizadas](#7-instrucciones-y-funciones-rapid-utilizadas)
+7. [Código RAPID](#8-código-rapid)
+8. [Restricciones y seguridad](#10-restricciones-y-seguridad)
+9. [Video de la práctica](#11-video-de-la-práctica)
+10. [Conclusiones](#12-conclusiones)
 
 
 ---
@@ -56,7 +55,7 @@ La decoración incluye:
 | Superficie de trabajo | [descripción] |
 | Detección de posición | [tiempo de desplazamiento / sensor] |
  
-<!-- EDITAR: banda, superficie de trabajo y detección de posición (en el código, ¿WaitTime o sensor?) -->
+
  
 ### 1.3 Asignación de señales
  
@@ -198,68 +197,13 @@ Elementos indicados en el plano:
 | ![CAD](imagenes/herramienta/cad.png) | ![Real](imagenes/herramienta/real.jpg) | ![Montada](imagenes/herramienta/montada.jpg) |
 
 ### 4.4 Archivos
-- Modelo original: [`cad/herramienta.ipt`](cad/herramienta.ipt)
-- Exportación STL: [`cad/herramienta.stl`](cad/herramienta.stl)
-- Exportación SAT: [`cad/herramienta.sat`](cad/herramienta.sat)
+- Modelo original: [`cad/herramienta.ipt`](cad/portaMarcador.ipt)
+- Exportación STL: [`cad/herramienta.stl`](cad/portaMarcador.stl)
+- Exportación SAT: [`cad/herramienta.sat`](cad/roboticasintecho.sat)
 - Planos de fabricación: [`cad/planos.pdf`](cad/planos.pdf)
 
 ---
 
-## 5. Calibración de la herramienta: real vs. RobotStudio
-
-### 5.1 Calibración con el robot real
-**Responsable: B**
-
-- **Técnica de calibración elegida:** [TCP de 4 puntos / 5 puntos / 6 puntos (TCP&Z / TCP&Z,X)] y por qué es la más apropiada para este caso.
-- **Procedimiento:** [pasos seguidos en el FlexPendant, punto de referencia fijo utilizado, número de aproximaciones y orientaciones].
-- **Error medio / error máximo reportado por el controlador:** [mm].
-
-```rapid
-PERS tooldata MiHerramienta := [TRUE,[[x,y,z],[q1,q2,q3,q4]],[masa,[cx,cy,cz],[1,0,0,0],0,0,0]];
-```
-
-### 5.2 Calibración en RobotStudio
-**Responsable: A**
-
-- Importación del modelo CAD (`.stl` / `.sat`) y ajuste de su posición respecto al flange.
-- Método de definición del TCP en RobotStudio: [creación de la herramienta con el modelo / frame de herramienta].
-- Valores obtenidos:
-
-```rapid
-PERS tooldata MiHerramienta_RS := [TRUE,[[x,y,z],[q1,q2,q3,q4]],[masa,[cx,cy,cz],[1,0,0,0],0,0,0]];
-```
-
-![Herramienta en RobotStudio](imagenes/herramienta/robotstudio.png)
-
-### 5.3 Comparación
-**Responsable: B**
-
-| Parámetro | Robot real | RobotStudio | Diferencia |
-|---|---:|---:|---:|
-| `tframe.trans.x` (mm) | | | |
-| `tframe.trans.y` (mm) | | | |
-| `tframe.trans.z` (mm) | | | |
-| `tframe.rot.q1` | | | |
-| `tframe.rot.q2` | | | |
-| `tframe.rot.q3` | | | |
-| `tframe.rot.q4` | | | |
-| `tload.mass` (kg) | | | |
-| `tload.cog.x` (mm) | | | |
-| `tload.cog.y` (mm) | | | |
-| `tload.cog.z` (mm) | | | |
-
-### 5.4 Análisis de las diferencias
-Posibles causas identificadas:
-
-- [Tolerancias de fabricación de la herramienta frente al modelo CAD.]
-- [Holguras o desajuste en la fijación al flange.]
-- [Error de apuntado del operador durante la calibración real.]
-- [Posicionamiento del modelo CAD en RobotStudio respecto al flange.]
-- [Masa y centro de gravedad estimados vs. medidos.]
-
-[Conclusión sobre cuál calibración es más confiable y por qué.]
-
----
 
 ## 6. WorkObjects
 
