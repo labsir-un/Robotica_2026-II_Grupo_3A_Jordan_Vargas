@@ -164,8 +164,8 @@ Elementos indicados en el plano:
 - Pastel de decoración sobre la banda.
 - Sistema coordenado con referencia WORLD.
 
-Medidas generales de la banda 20x54x1200cm (ancho, alto, largo).
-Medidas generales del pastel 18x10x24cm (ancho, alto, largo).
+- Medidas generales de la banda 20x54x1200cm (ancho, alto, largo).
+- Medidas generales del pastel 18x10x24cm (ancho, alto, largo).
 
 ---
 
