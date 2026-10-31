@@ -1,4 +1,4 @@
-# Laboratorio No. 01 — Robótica Industrial
+# Laboratorio No. 01 — Robótica: Trayectorias, Entradas y Salidas Digitales
 
 **Robótica 2026-II · Universidad Nacional de Colombia**
 
@@ -324,4 +324,3 @@ ENDIF
 ---
 
 *Universidad Nacional de Colombia · Robótica 2026-II · Laboratorio No. 01*
-
