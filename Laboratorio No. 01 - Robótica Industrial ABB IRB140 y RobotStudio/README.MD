@@ -83,14 +83,21 @@ Lógica de la banda:
 6. Con el robot en posición segura, reactivar la banda.
 7. Transportar el pastel decorado hasta el extremo final de la banda.
 8. Detener la banda, desactivar las señales de movimiento y finalizar el ciclo.
-<!-- EDITAR: paso 3, "tiempo" o "sensor" -->
  
 ### 1.5 Decoración
-[Descripción del diseño, tipografía/trazos usados para los nombres, cómo se mantuvo el trazo continuo, velocidades y zonas empleadas.]
+La decoración se programó como una secuencia de 16 trazos (`Path_50` … `Path_200`), cada uno definido como un procedimiento respecto a `Workobject_1`. Cada trazo es un contorno cerrado: empieza y termina en el mismo target. cada Path es aproximadamente una letra. 
+
+**Instrucciones de movimiento utilizadas.**
+- `MoveL`: trazos rectos, para que el marcador avance en línea recta sobre la superficie.
+- `MoveC`: tramos curvos (esquinas redondeadas y círculos), en `Path_90`, `Path_110`, `Path_150`, `Path_180` y `Path_190`.
+- `MoveJ`: movimientos en el aire, sin contacto: ir al primer punto de cada trazo y levantar el marcador a `Target_2380` (24 mm sobre la superficie) entre trazos.
+
+**Continuidad del trazo.** Cada contorno se traza de una sola pasada, sin levantar el marcador; este solo se levanta entre contornos. Todos los targets de trazo comparten la misma orientación respecto al WorkObject (`[1, 0, 0, 0]`) y la misma configuración de ejes (`[−1, 1, −2, 0]`), así que el brazo no cambia de configuración mientras dibuja.
+
+**Velocidades y zonas.** Los trazos y las levantadas se ejecutan a `v200` (200 mm/s) con zona `z1` (1 mm); solo el primer acercamiento (`Target_2450`, 50 mm sobre la superficie) usa `v100`. 
  
-<!-- EDITAR: describe el diseño, cómo trazaste los nombres, qué speeddata/zonedata usaste -->
  
-![Vista de la decoración](imagenes/decoracion.png)
+![Vista de la decoración](imagenes/fotopastel.jpeg)
  
 ### 1.6 Rutina *Farmear Aura*
 [Descripción de la coreografía: duración aproximada (10–20 s), movimientos `MoveJ`/`MoveL` usados, estructura de programación intermedia utilizada, retorno a HOME.]
