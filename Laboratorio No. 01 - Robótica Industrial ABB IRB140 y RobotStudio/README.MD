@@ -153,22 +153,19 @@ flowchart TD
 
 ## 3. Plano de planta
 
-![Plano de planta de la celda](imagenes/planoBanda.jpeg)
+![Plano de planta de la Banda](imagenes/planoBanda.jpeg)
+![Plano de planta del Pastel](imagenes/planPastel.jpeg)
+![Plano de planta del Robot](imagenes/planoRobot.jpeg)
 
 Elementos indicados en el plano:
 
 - Base del robot ABB IRB 140 y su sistema de coordenadas base.
-- Banda transportadora, con sentido de avance, extremo inicial y extremo final.
-- Estación de decoración sobre la banda.
-- Superficies de trabajo en los cuadrantes `x(+), y(+)` y `x(+), y(−)`.
-- Zona de interacción robot–banda y posición HOME.
-- Otros elementos de la celda: [mesas, gabinete del controlador, etc.].
+- Representación banda transportadora.
+- Pastel de decoración sobre la banda.
+- Sistema coordenado con referencia WORLD.
 
-| Dato | Valor |
-|---|---|
-| Distancia base del robot – estación de decoración | [mm] |
-| Dimensiones de la superficie de trabajo | [mm] |
-| Longitud útil de la banda | [mm] |
+Medidas generales de la banda 20x54x1200cm (ancho, alto, largo).
+Medidas generales del pastel 18x10x24cm (ancho, alto, largo).
 
 ---
 
@@ -205,7 +202,6 @@ Elementos indicados en el plano:
 ---
 
 ## 6. WorkObjects
-
 
 Todos los puntos de las trayectorias del programa están definidos respecto a un `wobjdata`, de modo que la misma rutina se reutiliza cambiando únicamente el sistema de coordenadas de referencia. En este laboratorio el WorkObject se definió de dos formas: en RobotStudio (`Workobject_1`) y con el robot real mediante el método de 3 puntos (`Wfeli`).
 
