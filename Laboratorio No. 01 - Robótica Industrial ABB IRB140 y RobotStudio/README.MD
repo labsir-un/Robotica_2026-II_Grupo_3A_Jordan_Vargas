@@ -100,12 +100,11 @@ La decoración se programó como una secuencia de 16 trazos (`Path_50` … `Path
 ![Vista de la decoración](imagenes/fotopastel.jpeg)
  
 ### 1.6 Rutina *Farmear Aura*
-[Descripción de la coreografía: duración aproximada (10–20 s), movimientos `MoveJ`/`MoveL` usados, estructura de programación intermedia utilizada, retorno a HOME.]
- 
-<!-- EDITAR: sale directo de tu procedimiento FarmearAura -->
+La coreografía tiene duración de aproximadamente 10s a 20 s, se usaron movimientos `MoveJ`/`MoveL`, en general su movimiento trataba de seguir una w con la punta del marcador en el aire. (dificil saber que es farmear aura)
  
 ### 1.7 Pose de mantenimiento
-[Descripción de la pose, valores articulares y por qué facilita instalar/retirar la herramienta e inspeccionar.]
+
+La pose fue una estipulada por nosotros donde nos facilitaba instalar/retirar la herramienta e inspeccionarla.
  
 
 ---
