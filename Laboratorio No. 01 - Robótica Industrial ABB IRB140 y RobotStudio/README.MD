@@ -5,7 +5,7 @@
 | | |
 |---|---|
 | **Integrante 1** | Luis Felipe Vargas Bernal — luvargasbe@unal.edu.co |
-| **Integrante B** | Isaac Jordán Oviedo - ijordan@unal.edu.co |
+| **Integrante 2** | Isaac Jordán Oviedo - ijordan@unal.edu.co |
 | **Robot** | ABB IRB 140 (controlador IRC5) |
 | **Software** | RobotStudio, RAPID |
 | **Fecha** | 30/10/2026 |
@@ -24,9 +24,6 @@
 6. [Instrucciones y funciones RAPID utilizadas](#7-instrucciones-y-funciones-rapid-utilizadas)
 7. [Código RAPID](#8-código-rapid)
 8. [Restricciones y seguridad](#10-restricciones-y-seguridad)
-9. [Video de la práctica](#11-video-de-la-práctica)
-10. [Conclusiones](#12-conclusiones)
-
 
 ---
 
@@ -52,10 +49,7 @@ La decoración incluye:
 | Módulo de E/S | DSQC 652 (3HAC025917-001/00) |
 | Banda transportadora | Banda del Laboratorio |
 | Herramienta | Soporte de marcador fijado al flange (impresión 3d) |
-| Superficie de trabajo | [descripción] |
-| Detección de posición | [tiempo de desplazamiento / sensor] |
  
-
  
 ### 1.3 Asignación de señales
  
