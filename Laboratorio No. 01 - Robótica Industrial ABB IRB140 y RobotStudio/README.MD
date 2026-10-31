@@ -152,9 +152,8 @@ flowchart TD
 ```
 
 ## 3. Plano de planta
-**Responsable: B**
 
-![Plano de planta de la celda](imagenes/plano_planta.png)
+![Plano de planta de la celda](imagenes/planoBanda.jpeg)
 
 Elementos indicados en el plano:
 
