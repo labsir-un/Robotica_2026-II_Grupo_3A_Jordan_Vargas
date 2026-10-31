@@ -106,8 +106,7 @@ Lógica de la banda:
 ### 1.7 Pose de mantenimiento
 [Descripción de la pose, valores articulares y por qué facilita instalar/retirar la herramienta e inspeccionar.]
  
-<!-- EDITAR: valores articulares del MoveAbsJ de PoseMantenimiento -->
- 
+
 ---
 
 ## 2. Diagrama de flujo
@@ -151,7 +150,6 @@ flowchart TD
 ```
 
 ## 3. Plano de planta
-**Responsable: B**
 
 ![Plano de planta de la celda](imagenes/plano_planta.png)
 
@@ -173,28 +171,27 @@ Elementos indicados en el plano:
 ---
 
 ## 4. Diseño de la herramienta
-**Responsable: B**
 
 ### 4.1 Requerimientos de diseño
 - Fijar un marcador o plumón al flange del IRB 140.
 - Permitir trazar sobre la superficie de forma estable y segura.
-- [Otros: compensación por resorte, ajuste de altura, etc.]
+- Compensación por resorte, ajuste de altura, etc.
 
 ### 4.2 Descripción del diseño
 [Descripción general, material, método de fabricación (p. ej. impresión 3D), forma de fijación al flange, ajuste del marcador.]
 
 | Parámetro | Valor |
 |---|---|
-| Software CAD | [Autodesk Inventor / otro] |
-| Material | [PLA / otro] |
-| Masa estimada | [g] |
-| Distancia flange – punta del marcador | [mm] |
+| Software CAD | Autodesk Inventor |
+| Material | PLA  |
+| Masa estimada | 30 g |
+
 
 ### 4.3 Imágenes
 
 | Modelo CAD | Herramienta construida | Montada en el robot |
 |---|---|---|
-| ![CAD](imagenes/herramienta/cad.png) | ![Real](imagenes/herramienta/real.jpg) | ![Montada](imagenes/herramienta/montada.jpg) |
+| ![CAD](imagenes/modelocad.jpeg) | ![Real](imagenes/real.jpeg) | ![Montada](imagenes/montada.jpeg) |
 
 ### 4.4 Archivos
 - Modelo original: [`cad/herramienta.ipt`](cad/portaMarcador.ipt)
