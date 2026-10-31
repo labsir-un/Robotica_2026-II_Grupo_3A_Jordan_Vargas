@@ -24,9 +24,6 @@
 6. [Instrucciones y funciones RAPID utilizadas](#7-instrucciones-y-funciones-rapid-utilizadas)
 7. [Código RAPID](#8-código-rapid)
 8. [Restricciones y seguridad](#10-restricciones-y-seguridad)
-9. [Video de la práctica](#11-video-de-la-práctica)
-10. [Conclusiones](#12-conclusiones)
-
 
 ---
 
