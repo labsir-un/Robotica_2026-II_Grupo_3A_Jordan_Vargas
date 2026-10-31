@@ -24,27 +24,25 @@
 6. [WorkObjects](#6-workobjects)
 7. [Instrucciones y funciones RAPID utilizadas](#7-instrucciones-y-funciones-rapid-utilizadas)
 8. [Código RAPID](#8-código-rapid)
-9. [Evidencia de funcionamiento](#9-evidencia-de-funcionamiento)
-10. [Restricciones y seguridad](#10-restricciones-y-seguridad)
-11. [Video de la práctica](#11-video-de-la-práctica)
-12. [Conclusiones](#12-conclusiones)
-13. [Estructura del repositorio](#13-estructura-del-repositorio)
+9. [Restricciones y seguridad](#10-restricciones-y-seguridad)
+10. [Video de la práctica](#11-video-de-la-práctica)
+11. [Conclusiones](#12-conclusiones)
+
 
 ---
 
 ## 1. Descripción de la solución
-**Responsable: A**
- 
+
 ### 1.1 Objetivo
-Celda simplificada para la decoración automática de una torta virtual (superficie plana [circular / rectangular] de [dimensiones] mm, equivalente aproximadamente a una torta para 20 personas) con un robot ABB IRB 140, integrada con una banda transportadora mediante señales digitales.
+Celda simplificada para la decoración automática de una torta virtual (superficie plana rectangular de 100 x 180 x 240 mm, equivalente aproximadamente a una torta para 20 personas) con un robot ABB IRB 140, integrada con una banda transportadora mediante señales digitales.
  
-<!-- EDITAR: forma y dimensiones de la torta -->
+
  
 La decoración incluye:
  
 - Los nombres de los integrantes, claramente separados.
-- Una decoración adicional: [describir el diseño elegido].
-<!-- EDITAR: el diseño adicional que hiciste -->
+- Una decoración adicional: logo de Marca Mercedez Benz, y de Formula 1.
+
  
 ### 1.2 Elementos de la celda
  
@@ -53,8 +51,8 @@ La decoración incluye:
 | Manipulador | ABB IRB 140 |
 | Controlador | IRC5 |
 | Módulo de E/S | DSQC 652 (3HAC025917-001/00) |
-| Banda transportadora | [modelo, sentido de avance, variador de frecuencia] |
-| Herramienta | Soporte de marcador/plumón fijado al flange |
+| Banda transportadora | Banda del Laboratorio |
+| Herramienta | Soporte de marcador fijado al flange (impresión 3d) |
 | Superficie de trabajo | [descripción] |
 | Detección de posición | [tiempo de desplazamiento / sensor] |
  
