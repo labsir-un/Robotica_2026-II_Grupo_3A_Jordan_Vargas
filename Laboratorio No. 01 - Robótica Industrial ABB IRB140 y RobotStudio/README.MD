@@ -20,13 +20,12 @@
 2. [Diagrama de flujo](#2-diagrama-de-flujo)
 3. [Plano de planta](#3-plano-de-planta)
 4. [Diseño de la herramienta](#4-diseño-de-la-herramienta)
-5. [Calibración de la herramienta: real vs. RobotStudio](#5-calibración-de-la-herramienta-real-vs-robotstudio)
-6. [WorkObjects](#6-workobjects)
-7. [Instrucciones y funciones RAPID utilizadas](#7-instrucciones-y-funciones-rapid-utilizadas)
-8. [Código RAPID](#8-código-rapid)
-9. [Restricciones y seguridad](#10-restricciones-y-seguridad)
-10. [Video de la práctica](#11-video-de-la-práctica)
-11. [Conclusiones](#12-conclusiones)
+5. [WorkObjects](#6-workobjects)
+6. [Instrucciones y funciones RAPID utilizadas](#7-instrucciones-y-funciones-rapid-utilizadas)
+7. [Código RAPID](#8-código-rapid)
+8. [Restricciones y seguridad](#10-restricciones-y-seguridad)
+9. [Video de la práctica](#11-video-de-la-práctica)
+10. [Conclusiones](#12-conclusiones)
 
 
 ---
@@ -56,7 +55,7 @@ La decoración incluye:
 | Superficie de trabajo | [descripción] |
 | Detección de posición | [tiempo de desplazamiento / sensor] |
  
-<!-- EDITAR: banda, superficie de trabajo y detección de posición (en el código, ¿WaitTime o sensor?) -->
+
  
 ### 1.3 Asignación de señales
  
@@ -107,8 +106,7 @@ Lógica de la banda:
 ### 1.7 Pose de mantenimiento
 [Descripción de la pose, valores articulares y por qué facilita instalar/retirar la herramienta e inspeccionar.]
  
-<!-- EDITAR: valores articulares del MoveAbsJ de PoseMantenimiento -->
- 
+
 ---
 
 ## 2. Diagrama de flujo
@@ -170,36 +168,36 @@ Elementos indicados en el plano:
 ---
 
 ## 4. Diseño de la herramienta
-**Responsable: B**
 
 ### 4.1 Requerimientos de diseño
 - Fijar un marcador o plumón al flange del IRB 140.
 - Permitir trazar sobre la superficie de forma estable y segura.
-- [Otros: compensación por resorte, ajuste de altura, etc.]
+- Compensación por resorte, ajuste de altura, etc.
 
 ### 4.2 Descripción del diseño
 [Descripción general, material, método de fabricación (p. ej. impresión 3D), forma de fijación al flange, ajuste del marcador.]
 
 | Parámetro | Valor |
 |---|---|
-| Software CAD | [Autodesk Inventor / otro] |
-| Material | [PLA / otro] |
-| Masa estimada | [g] |
-| Distancia flange – punta del marcador | [mm] |
+| Software CAD | Autodesk Inventor |
+| Material | PLA  |
+| Masa estimada | 30 g |
+
 
 ### 4.3 Imágenes
 
 | Modelo CAD | Herramienta construida | Montada en el robot |
 |---|---|---|
-| ![CAD](imagenes/herramienta/cad.png) | ![Real](imagenes/herramienta/real.jpg) | ![Montada](imagenes/herramienta/montada.jpg) |
+| ![CAD](imagenes/modelocad.jpeg) | ![Real](imagenes/real.jpeg) | ![Montada](imagenes/montada.jpeg) |
 
 ### 4.4 Archivos
-- Modelo original: [`cad/herramienta.ipt`](cad/herramienta.ipt)
-- Exportación STL: [`cad/herramienta.stl`](cad/herramienta.stl)
-- Exportación SAT: [`cad/herramienta.sat`](cad/herramienta.sat)
+- Modelo original: [`cad/herramienta.ipt`](cad/portaMarcador.ipt)
+- Exportación STL: [`cad/herramienta.stl`](cad/portaMarcador.stl)
+- Exportación SAT: [`cad/herramienta.sat`](cad/roboticasintecho.sat)
 - Planos de fabricación: [`cad/planos.pdf`](cad/planos.pdf)
 
 ---
+
 
 ## 6. WorkObjects
 
@@ -318,7 +316,7 @@ ENDIF
  
 ---
 
-## 10. Restricciones y seguridad
+## 9. Restricciones y seguridad
  
 | Requisito | Cómo se cumplió |
 |---|---|
@@ -338,7 +336,7 @@ ENDIF
  
 ---
 
-## 11. Video de la práctica
+## 10. Video de la práctica
 
 
 > El video se publica **únicamente** en el canal oficial de YouTube del Laboratorio LabSIR, a través del monitor de la asignatura. No se publica en canales personales.
@@ -350,7 +348,7 @@ ENDIF
 
 ---
 
-## 12. Conclusiones
+## 11. Conclusiones
 **Responsable: B (con revisión de A)**
 
 - [Conclusión sobre la integración robot–banda mediante señales digitales.]
