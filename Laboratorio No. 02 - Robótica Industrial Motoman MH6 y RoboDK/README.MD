@@ -1,5 +1,5 @@
 #Tabla de contenido
-1. [Cuadro comparativo Motoman MH6 y ABB IRB140](#1.- Cuadro comparativo Motoman MH6 y ABB IRB140)
+1. [Cuadro comparativo Motoman MH6 y ABB IRB140](#1-cuadro-comparativo-motoman-mh6-y-abb-irb140)
 
 ##1.- Cuadro comparativo Motoman MH6 y ABB IRB140
 ##2.- Configuraciones Home1 y Home2
