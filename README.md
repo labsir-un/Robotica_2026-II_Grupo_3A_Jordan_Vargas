@@ -54,7 +54,12 @@ Aquí se documentan los laboratorios, avances, resultados y la presentación de 
 
 ### Integrante 1
 <div align="center">
-  <img src="./assets/integrantes/Isaac Jordán Oviedo.jpeg" alt="Foto integrante 2" style="border-radius: 50%; width: 180px;"><br>
+  <img
+    src="./assets/integrantes/Isaac Jordán Oviedo.jpeg"
+    alt="Foto de Isaac"
+    width="180"
+    style="border-radius: 50%; object-fit: cover;"
+  />
 </div>
 
 - **Nombre completo:** Isaac Jordán Oviedo
