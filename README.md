@@ -57,14 +57,16 @@ Aquí se documentan los laboratorios, avances, resultados y la presentación de 
   <img src="./assets/integrantes/integrante1.jpg" alt="Foto integrante 1" style="border-radius: 50%; width: 180px;"><br>
 </div>
 
-- **Nombre completo:** Nombre Apellido
+- **Nombre completo:** Isaac Jordán Oviedo
 - **Carrera:** Ingeniería Mecatrónica
-- **Correo institucional:** nombre@unal.edu.co
-- **Usuario de GitHub:** [usuariogithub](https://github.com/usuariogithub)
-- **Rol en el equipo:** Ej. Integración ROS 2, documentación, simulación
+- **Correo institucional:** ijordan@unal.edu.co
+- **Usuario de GitHub:** [ijordan-svg](https://github.com/ijordan-svg)
+- **Rol en el equipo:** Coordinador y editor.
 - **Intereses:** Robótica móvil, visión artificial, automatización
 - **Descripción breve:**  
-  Escribe aquí una breve presentación personal y académica del integrante.
+  Estudiante de Ingeniería Mecatrónica, interesado en el desarrollo de proyectos relacionados con la electrónica, programación y automatización. Tengo especial interés en los microcontroladores, servomecanismos, robótica y sistemas de control, así como en la integración de hardware y software para el desarrollo de soluciones tecnológicas.
+
+Me caracterizo por mis habilidades de trabajo en equipo, gestión de recursos y coordinación de grupos de trabajo, acompañadas de una comunicación asertiva y capacidad para resolver problemas. Me motiva el aprendizaje continuo y la aplicación de mis conocimientos en proyectos prácticos e innovadores.
 
 ---
 
