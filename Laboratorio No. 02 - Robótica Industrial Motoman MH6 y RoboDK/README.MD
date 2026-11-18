@@ -11,7 +11,7 @@
 ## 1.- Cuadro comparativo Motoman MH6 y ABB IRB140
 <!-- POR TERMINAR -->
 ## 2.- Configuraciones Home1 y Home2
-El robot Motoman MH6 cuenta con dos posiciones de Home. La primera posición está dedicada a la comodidad para transportar el robot, mientras que la segunda posición está dedicada al inicio de trabajo. Ambas posiciones se indican en el video.
+El robot Motoman MH6 cuenta con dos posiciones de Home. La primera posición está dedicada a la comodidad para transportar el robot, mientras que la segunda posición está dedicada al inicio de trabajo. Ambas posiciones tienen una funcionalidad específica para diferentes tareas, por eso ninguna es mejor que la otra, cada una es necesaria para su propia tarea. 
 | Articulación | Home1 (°) | Home2 (°) |
 | --- | --- | --- |
 | S | 0 | 0 |
@@ -21,6 +21,18 @@ El robot Motoman MH6 cuenta con dos posiciones de Home. La primera posición est
 | B | 42647 | -121 |
 | T | 1392 | 1392 |
 ## 3.- Movimientos manuales y niveles de velocidad
+Para realizar movimientos manuales se debe seguir la siguiente lista de pasos:
+1. Apretar el botón de **parada de emergencia**
+2. Girar la llave hasta la opción **TEACH**
+3. Desbloquear el botón de **parada de emergencia**
+4. Pulsar el botón **Servo on ready**
+5. En la pantalla seleccionar al lado izquierdo la pestaña de **robot**
+6. Seleccionar el tipo de movimiento **articular**
+<!-- EXPLICAR AQUI COMO CAMBIAR DE ARTICULAR A LINEAR O ROTACIONAL -->
+7. Mover cada articulación con las teclas correspondientes (S$\pm$;L$\pm$;U$\pm$;R$\pm$;B$\pm$;T$\pm$;E$\pm$;8$\pm$;)
+
+Para modificar la velocidad del robot se encuentran los botones **FAST** y **SLOW**. Cada uno incrementa o decrementa respectivamente el nivel de la velocidad. Existen tres niveles: low, medium y high; y se indican en el teach pendant en la parte superior con un triángulo formado por tres barras verdes acompañadas de una letra. Cada barra pintada indica el nivel de velocidad en el que se encuentra: una barra indica la mínima velocidad y tres barras completan la velocidad máxima.
+
 ## 4.- Funcionalidades RoboDK
 ## 5.- Comparación entre RoboDK y RobotStudio
 ## 6.- Diagrama de flujo rutina
