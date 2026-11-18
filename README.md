@@ -53,10 +53,9 @@ Aquí se documentan los laboratorios, avances, resultados y la presentación de 
 ## Integrantes del equipo
 
 ### Integrante 1
-<img src="./Isaac%20Jord%C3%A1n%20Oviedo.jpeg"
-     alt="Foto de perfil"
-     style="border-radius: 50%; width: 180px;">
-<br>
+<div align="center">
+  <img src="./assets/integrantes/Isaac Jordán Oviedo.jpeg" alt="Foto integrante 2" style="border-radius: 50%; width: 180px;"><br>
+</div>
 
 - **Nombre completo:** Isaac Jordán Oviedo
 - **Carrera:** Ingeniería Mecatrónica
