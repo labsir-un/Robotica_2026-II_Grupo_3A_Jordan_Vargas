@@ -73,13 +73,11 @@ Los movimientos con los que cuenta son: **MoveJ** y **MoveL** para dirigirse a u
 
 ## 6.- Diagrama de flujo rutina
 
-```mermaid
 flowchart TD
     A([Inicio]) --> B["Posición Home<br/><br/>Posición Segura (antes de entrar en el espacio de trabajo)"]
     B --> C["Realiza figura polar (Caracol de Pascal)<br/><br/>Nombres de los integrantes"]
     C --> D["Posición Segura<br/><br/>Posición Home"]
     D --> E([Fin])
-```
 
 ## 7.- Plano de planta
 
