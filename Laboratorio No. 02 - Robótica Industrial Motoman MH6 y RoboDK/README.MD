@@ -9,7 +9,17 @@
 8. [Código de la rutina y video](#8-código-de-la-rutina)
 
 ## 1.- Cuadro comparativo Motoman MH6 y ABB IRB140
+<!-- POR TERMINAR -->
 ## 2.- Configuraciones Home1 y Home2
+El robot Motoman MH6 cuenta con dos posiciones de Home. La primera posición está dedicada a la comodidad para transportar el robot, mientras que la segunda posición está dedicada al inicio de trabajo. Ambas posiciones se indican en el video.
+| Articulación | Home1 (°) | Home2 (°) |
+| --- | --- | --- |
+| S | 0 | 0 |
+| L | -115290 | 2037 |
+| U | -111622 | 2359 |
+| R | 1 | 0 |
+| B | 42647 | -121 |
+| T | 1392 | 1392 |
 ## 3.- Movimientos manuales y niveles de velocidad
 ## 4.- Funcionalidades RoboDK
 ## 5.- Comparación entre RoboDK y RobotStudio
