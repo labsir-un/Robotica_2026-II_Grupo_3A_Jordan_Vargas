@@ -157,6 +157,7 @@ flowchart TD
  
 - Felipe 
 - Isaac
+
 La trayectoria polar se programó en Python con la API de RoboDK. Los puntos de la curva (Caracol de Pascal, en su forma de cardioide) se generan en coordenadas polares y se convierten a cartesianas para ejecutarse sobre el plano de trabajo. Para los nombres de los integrantes se utilizó la librería **matplotlib**. La rutina se simula primero en RoboDK y después se envía al Motoman MH6 conectado por red desde el PC.
  
 ### Código
