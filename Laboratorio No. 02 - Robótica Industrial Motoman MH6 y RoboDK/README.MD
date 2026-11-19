@@ -163,8 +163,7 @@ La trayectoria polar se programó en Python con la API de RoboDK. Los puntos de 
  
 El código completo está en el repositorio, dentro de la carpeta de anexos:
  
-- [`Codigo/cardioidePolar.py`](<Laboratorio%20No.%2002%20-%20Rob%C3%B3tica%20Industrial%20Motoman%20MH6%20y%20RoboDK/Codigo/cardioidePolar.py>)
- 
+- [`Codigo/cardioidePolar.py`](https://github.com/labsir-un/Robotica_2026-II_Grupo_3A_Jordan_Vargas/blob/main/Laboratorio%20No.%2002%20-%20Rob%C3%B3tica%20Industrial%20Motoman%20MH6%20y%20RoboDK/Codigo/cardioidePolar.py) 
 ### Video
  
 El video muestra la simulación en RoboDK y la ejecución física en el Motoman MH6 controlado desde el PC.
