@@ -12,8 +12,7 @@
 <h2>Profesores: <br>Pedro Fabián Cárdenas Herrera <br> Manuel Felipe Carranza Montenegro</h2>
 
 <h4>Isaac Jordán Oviedo<br>
-    Nombre Integrante 2<br>
-    Nombre Integrante 3</h4>
+    Luis Felipe Vargas Bernal</h4>
 
 <p>
   <img alt="Ubuntu 24.04 LTS" src="https://img.shields.io/badge/Ubuntu-24.04%20LTS-E95420?logo=ubuntu&logoColor=white">
@@ -80,7 +79,7 @@ Aquí se documentan los laboratorios, avances, resultados y la presentación de 
 - **Nombre completo:** Luis Felipe Vargas Bernal
 - **Carrera:** Ingeniería Mecatrónica
 - **Correo institucional:** luvargasbe@unal.edu.co
-- **Usuario de GitHub:** [tu-usuario](https://github.com/tu-usuario)
+- **Usuario de GitHub:** [felipeVargas18](https://github.com/felipeVargas18)
 - **Rol en el equipo:** Programación, control y operación del manipulador
 - **Intereses:** Control, sensores y actuadores, automatización, robótica industrial, electrónica
 - **Descripción breve:**  
