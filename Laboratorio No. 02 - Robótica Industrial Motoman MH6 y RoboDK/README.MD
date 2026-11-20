@@ -149,6 +149,8 @@ flowchart TD
 ```
 ## 7.- Plano de planta
 
+
+
 ## 8.- Código de la rutina y video
  
 ### Trayectoria polar: Caracol de Pascal
@@ -169,5 +171,5 @@ El código completo está en el repositorio, dentro de la carpeta de anexos:
  
 El video muestra la simulación en RoboDK y la ejecución física en el Motoman MH6 controlado desde el PC.
  
-- 🎥 [Ver video de la práctica](https://www.youtube.com/watch?v=ENLACE_DEL_VIDEO)
+- 🎥 [Ver video de la práctica](https://youtu.be/3fu1SCxlj8c)
 
