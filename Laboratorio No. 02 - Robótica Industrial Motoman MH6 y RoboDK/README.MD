@@ -149,7 +149,7 @@ flowchart TD
 ```
 ## 7.- Plano de planta
 
-
+![Imagen plano de planta](imagenes/planta.jpeg)
 
 ## 8.- Código de la rutina y video
  
