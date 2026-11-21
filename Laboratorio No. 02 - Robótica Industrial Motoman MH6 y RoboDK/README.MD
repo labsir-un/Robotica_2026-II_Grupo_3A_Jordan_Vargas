@@ -55,9 +55,10 @@ El robot Motoman MH6 cuenta con dos posiciones de Home. La primera posición est
 | B | 42647 | -121 |
 | T | 1392 | 1392 |
 
-![Home 1](imagenes/Home_1.jpeg)
-![Home 2](imagenes/Home_2.jpeg)
-
+<p align="center">
+  <img src="imagenes/Home_1.jpeg" alt="Home 1" width="300">
+  <img src="imagenes/Home_2.jpeg" alt="Home 2" width="300">
+</p>
 
 ## 3.- Movimientos manuales y niveles de velocidad
 
